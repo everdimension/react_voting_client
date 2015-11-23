@@ -1,0 +1,20 @@
+.Voting {
+	&__btn {
+		width: 100%;
+		height: 49.75vh;
+		background-color: magenta;
+		border: none;
+		color: white;
+		transition: background-color .2s;
+		&:hover {
+			background-color: indianred;
+		}
+		&:last-child {
+			margin-top: .5vh;
+			background-color: midnightblue;
+			&:hover {
+				background-color: mediumblue;
+			}
+		}
+	}
+}
