@@ -1,27 +1,21 @@
 import React from 'react';
-// import styles from './Voting.css';
+import styles from './Voting.css';
+import Winner from './Winner';
+import Vote from './Vote';
 
 class Voting extends React.Component {
 	constructor(props) {
 		super(props);
-		this.getPair = this.getPair.bind(this);
-	}
-
-	getPair() {
-		return this.props.pair;
 	}
 
 	render() {
-		console.log('rendering Voting', this.getPair());
 		return (
 			<div className="Voting">
-				{this.getPair().map((entry) => {
-					return (
-						<button key={entry} className="Voting__btn">
-							{entry}
-						</button>
-					);
-				})}
+				{this.props.winner ?
+					<Winner ref="winner" name={this.props.winner} />
+					:
+					<Vote {...this.props} />
+				}
 			</div>
 		);
 	}

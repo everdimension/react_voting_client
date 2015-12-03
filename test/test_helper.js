@@ -21,3 +21,10 @@ Object.keys(window).forEach(function (key) {
 
 // helper for chai
 chai.use(chaiImmutable);
+
+// ignore css
+function noop() {
+	return null;
+}
+
+require.extensions['.css'] = noop;

@@ -1,5 +1,6 @@
 .Voting {
 	&__btn {
+		cursor: pointer;
 		width: 100%;
 		height: 49.75vh;
 		background-color: magenta;
@@ -16,5 +17,29 @@
 				background-color: mediumblue;
 			}
 		}
+		&[disabled] {
+			&, &:hover {
+				background-color: #555;
+			}
+
+		}
+	}
+
+	&__winner {
+		height: 100vh;
+		background-color: #9b59b6;
+		color: white;
+		padding-top: 80px;
+		font-size: 2em;
+		text-align: center;
+	}
+}
+
+.VotingBtn {
+	&__subtitle {
+		display: block;
+		color: rgba(150,150,150,.5);
+		font-size: 1.8em;
+		margin-top: 10px;
 	}
 }
