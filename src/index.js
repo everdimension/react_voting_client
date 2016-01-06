@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Voting from './components/Voting';
+
+require('normalize.css/normalize.css');
 require('./components/App/App.css');
 
 console.log('the app!');

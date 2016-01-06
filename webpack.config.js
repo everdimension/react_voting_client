@@ -30,7 +30,6 @@ var config = {
 			},
 			{
 				test: /\.css$/,
-				exclude: /(node_modules|bower_components)/,
 				loader: 'style!css!postcss'
 			}
 		]

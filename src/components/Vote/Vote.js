@@ -30,7 +30,7 @@ class Vote extends React.Component {
 				<button key={entry}
 					className="Voting__btn"
 					disabled={this.isDisabled()}
-					onClick={() => this.props.vote(entry) }
+					onClick={() => this.props.vote(entry)}
 				>
 					{entry}
 					{subtitle}
