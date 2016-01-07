@@ -9,7 +9,7 @@ class Vote extends React.Component {
 	}
 
 	getPair() {
-		return this.props.pair;
+		return this.props.pair || [];
 	}
 
 	isDisabled() {
@@ -46,10 +46,5 @@ class Vote extends React.Component {
 		);
 	}
 }
-
-Vote.propTypes = {
-	vote: PropTypes.func,
-	pair: PropTypes.array
-};
 
 export default Vote;

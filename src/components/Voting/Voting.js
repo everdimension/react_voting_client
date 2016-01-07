@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from './Voting.css';
 import Winner from '../Winner';
 import Vote from '../Vote';
+import './Voting.css';
 
 class Voting extends React.Component {
 	constructor(props) {
@@ -9,10 +9,15 @@ class Voting extends React.Component {
 	}
 
 	render() {
+		const saveWinner = (node) => {
+			console.log('winner node', node);
+			this._winner = node;
+			console.log('this', this);
+		};
 		return (
 			<div className="Voting">
 				{this.props.winner ?
-					<Winner ref="winner" name={this.props.winner} /> :
+					<Winner name={this.props.winner} /> :
 					<Vote {...this.props} />
 				}
 			</div>

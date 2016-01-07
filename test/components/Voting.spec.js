@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactTestUtils from 'react-addons-test-utils';
 import Voting from '../../src/components/Voting';
+import Winner from '../../src/components/Winner';
 import { expect } from 'chai';
 
-const { renderIntoDocument, scryRenderedDOMComponentsWithTag, Simulate } = ReactTestUtils;
+const { renderIntoDocument, scryRenderedDOMComponentsWithTag, Simulate, createRenderer } = ReactTestUtils;
 
 describe('Voting', () => {
 
@@ -81,9 +82,18 @@ describe('Voting', () => {
 
 		expect(buttons.length).to.equal(0);
 
-		const winner = React.findDOMNode(component.refs.winner);
-		expect(winner).to.be.ok;
-		expect(winner.textContent).to.contain('Trainspotting');
+		// const winner = component._winner;
+		// expect(winner).to.be.ok;
+		// expect(winner.textContent).to.contain('Trainspotting');
+
+		const renderer = createRenderer();
+		renderer.render(
+			<Voting winner="Trainspotting" />
+		);
+
+		const result = renderer.getRenderOutput();
+		expect(result.type).to.be.ok;
+		expect(result.props.children).to.deep.equal(<Winner name="Trainspotting" />);
 
 	});
 

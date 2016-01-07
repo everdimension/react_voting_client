@@ -1,7 +1,48 @@
 @import '../variables.css';
 
+* {
+	box-sizing: border-box;
+}
+*:after, *:before {
+	box-sizing: border-box;
+}
+
 #app {
-	max-width: 500px;
 	margin: 0 auto;
 	color: $textColor;
+}
+
+#nav {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	background-color: $panel-bg;
+}
+
+.NavItems {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	&:after {
+		content: ' ';
+		display: table;
+		clear: both;
+	}
+	> li {
+		float: left;
+		> a {
+			display: block;
+			padding: 10px 15px;
+			color: $subtle-clr;
+		}
+	}
+}
+
+.container {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.nowrap {
+	white-space: nowrap;
 }
