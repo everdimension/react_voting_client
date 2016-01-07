@@ -1,5 +1,6 @@
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { fromJS } from 'immutable';
+import actionMiddleware from './action_middleware';
 import reducer from './reducer';
 
 // const appReducer = (state={}, action) => {
@@ -7,20 +8,12 @@ import reducer from './reducer';
 // 		voting: reducer(state.voting, action)
 // 	};
 // };
-// 
+//
 const appReducer = combineReducers({
 	voting: reducer
 });
 
-const initialState = {
-	voting: fromJS({
-		vote: {
-			pair: ['Mad Max', 'Sherlock'],
-			tally: { Sherlock: 1 }
-		}
-	})
-};
-
-const store = createStore(appReducer, initialState);
+const createStoreWithMiddleware = applyMiddleware(actionMiddleware)(createStore);
+const store = createStoreWithMiddleware(appReducer);
 
 export default store;

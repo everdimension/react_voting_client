@@ -28,7 +28,7 @@ class Vote extends React.Component {
 			}
 			return (
 				<button key={entry}
-					className="Voting__btn"
+					className="Voting__btn VotingBtn"
 					disabled={this.isDisabled()}
 					onClick={() => this.props.vote(entry)}
 				>

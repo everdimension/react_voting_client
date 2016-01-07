@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 import Voting from '../components/Voting';
 import store from '../store';
+import { vote } from '../actions/action_creators';
 
 // *************************
 // this container component doesn't use redux's "connect()"
@@ -31,15 +32,13 @@ class VotingPage extends React.Component {
 
 	render () {
 		console.log('rendering VotingPage', store.getState());
-		const vote = (entry) => store.dispatch({
-			type: 'VOTE',
-			entry
-		});
+		const handleVote = (entry) => store.dispatch(vote(entry));
 		const state = this.state;
 		return (
 			<Voting pair={state.voting.getIn(['vote', 'pair'])}
 				winner={state.voting.get('winner')}
-				vote={vote} />
+				hasVoted={state.voting.get('hasVoted')}
+				vote={handleVote} />
 		);
 	}
 }

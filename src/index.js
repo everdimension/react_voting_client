@@ -5,6 +5,7 @@ import createBrowserHistory from 'history/lib/createBrowserHistory';
 import { Provider } from 'react-redux';
 import io from 'socket.io-client';
 import store from './store';
+import { setState } from './actions/action_creators';
 import App from './components/App';
 import ResultsPage from './containers/ResultsPage';
 import VotingPage from './containers/VotingPage';
@@ -18,6 +19,9 @@ import 'normalize.css/normalize.css';
 const IO_PORT = 4400;
 const { protocol, hostname } = location;
 const socket = io(`${protocol}//${hostname}:${IO_PORT}`);
+socket.on('state', state => store.dispatch(
+	setState(state)
+));
 
 ReactDOM.render(
 	<Provider store={store}>

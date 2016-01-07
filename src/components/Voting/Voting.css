@@ -2,29 +2,8 @@
 
 .Voting {
 	&__btn {
-		cursor: pointer;
 		width: 49.9%;
 		height: 100vh;
-		background-color: $button-bg;
-		border: none;
-		color: white;
-		font-size: 3em;
-		transition: background-color .2s;
-		&:hover {
-			background-color: $button-bg-hover;
-		}
-		&:active {
-			background-color: transparent;
-			color: #333;
-		}
-		&:last-child {
-			margin-left: .2%;
-		}
-		&[disabled] {
-			&, &:hover {
-				background-color: $button-bg-disabled;
-			}
-		}
 	}
 
 	&__winner {
@@ -42,8 +21,34 @@
 }
 
 .VotingBtn {
+	position: relative;
+	background-color: $button-bg;
+	border: none;
+	color: white;
+	font-size: 3em;
+	vertical-align: top;
+	transition: background-color .2s;
+	&:hover {
+		background-color: $button-bg-hover;
+	}
+	&:active {
+		background-color: transparent;
+		color: #333;
+	}
+	&:last-child {
+		margin-left: .2%;
+	}
+	&[disabled] {
+		&, &:hover {
+			background-color: $button-bg-disabled;
+		}
+	}
 	&__subtitle {
-		display: block;
+		position: absolute;
+		left: 0;
+		top: calc(50% + .2em);
+		width: 100%;
+		text-align: center;
 		color: rgba(150,150,150,.5);
 		font-size: 1.8em;
 		margin-top: 10px;

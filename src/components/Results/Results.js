@@ -9,8 +9,10 @@ class Results extends React.Component {
 
 	render () {
 
+		const tally = this.props.tally;
+
 		const rows = this.getPair().map((name) => {
-			const width = (this.props.tally.get(name) / 5) * 100 + '%';
+			const width = ((tally ? tally.get(name, 0) : 0) / 5) * 100 + '%';
 			const style = { width };
 			return (
 				<tr key={name}>
@@ -21,7 +23,7 @@ class Results extends React.Component {
 								style={style}></div>
 						</div>
 					</td>
-					<td>{this.props.tally.get(name, 0)}</td>
+					<td>{tally ? tally.get(name, 0) : 0}</td>
 				</tr>
 			);
 		});
