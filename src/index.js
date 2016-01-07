@@ -2,30 +2,31 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, IndexRoute } from 'react-router';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
+import { Provider } from 'react-redux';
+import io from 'socket.io-client';
+import store from './store';
 import App from './components/App';
 import ResultsPage from './containers/ResultsPage';
 import VotingPage from './containers/VotingPage';
 
-require('normalize.css/normalize.css');
-
-console.log('the app!');
-
-const pair = ['Trainspotting', '28 Days Later'];
-
-const voteFn = function () {
-	console.log('voting fn');
-};
+import 'normalize.css/normalize.css';
 
 // const history = useBasename(createBrowserHistory)({
 // 	baseName: '/'
 // });
 
+const IO_PORT = 4400;
+const { protocol, hostname } = location;
+const socket = io(`${protocol}//${hostname}:${IO_PORT}`);
+
 ReactDOM.render(
-	<Router history={createBrowserHistory()}>
-		<Route path="/" component={App}>
-			<IndexRoute component={VotingPage} />
-			<Route path="/results" component={ResultsPage} />
-		</Route>
-	</Router>,
+	<Provider store={store}>
+		<Router history={createBrowserHistory()}>
+			<Route path="/" component={App}>
+				<IndexRoute component={VotingPage} />
+				<Route path="/results" component={ResultsPage} />
+			</Route>
+		</Router>
+	</Provider>,
 	document.getElementById('app')
 );

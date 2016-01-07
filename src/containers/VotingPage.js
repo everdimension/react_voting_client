@@ -2,21 +2,30 @@ import React, { PropTypes } from 'react'
 import Voting from '../components/Voting';
 import store from '../store';
 
+// *************************
+// this container component doesn't use redux's "connect()"
+// function and handles connecting to the store on its own
+// ResultsPage, on the other hand, uses "connect()"
+// *************************
+
 class VotingPage extends React.Component {
 	constructor() {
 		super();
 		this.state = store.getState();
 	}
 
+	shouldComponentUpdate(nextProps, nextState) {
+		return this.state.voting !== nextState.voting;
+	}
+
 	componentDidMount() {
 		this.unsubscribe = store.subscribe(() => {
 			this.setState(store.getState());
-			console.log('updating component');
-			console.log(this.state);
 		});
 	}
 
 	componentWillUnMount() {
+		console.log('unmounting component');
 		this.unsubscribe();
 	}
 
