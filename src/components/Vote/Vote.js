@@ -39,7 +39,7 @@ class Vote extends React.Component {
 		});
 
 		return (
-			<div>
+			<div className="Voting__buttons">
 				{buttons}
 			</div>
 

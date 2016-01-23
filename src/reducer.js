@@ -14,14 +14,15 @@ const vote = (state, entry) => {
 
 const resetVotes = (state) => {
 	const currentPair = state.getIn(['vote', 'pair']);
-	if (!currentPair.contains(state.get('hasVoted'))) {
+	if (currentPair && state.get('hasVoted') && !currentPair.contains(state.get('hasVoted'))) {
 		return state.remove('hasVoted');
 	}
 	return state;
 
 }
 
-const reducer = (state=Map(), action) => {
+const reducer = (state=Map({}), action) => {
+	console.log('voting reducer');
 	switch (action.type) {
 		case 'SET_STATE':
 			return resetVotes(state.merge(fromJS(action.state)));
@@ -30,8 +31,6 @@ const reducer = (state=Map(), action) => {
 		case 'VOTE':
 			return vote(state, action.entry);
 	}
-
-	console.log('unknown action', state);
 
 	return state;
 };

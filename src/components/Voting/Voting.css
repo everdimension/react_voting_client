@@ -1,12 +1,27 @@
 @import '../variables.css';
 
 .Voting {
+	display: flex;
+	height: 100vh;
+	&__buttons {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		@media (min-width: 500px) {
+			flex-direction: row;
+		}
+	}
 	&__btn {
-		width: 49.9%;
-		height: 100vh;
+		flex-grow: 1;
+		@media (min-width: 500px) {
+			&:last-child {
+				border-left: 2px solid white;
+			}
+		}
 	}
 
 	&__winner {
+		flex-grow: 1;
 		height: 100vh;
 		background-color: #9b59b6;
 		color: white;
@@ -34,9 +49,6 @@
 	&:active {
 		background-color: transparent;
 		color: #333;
-	}
-	&:last-child {
-		margin-left: .2%;
 	}
 	&[disabled] {
 		&, &:hover {

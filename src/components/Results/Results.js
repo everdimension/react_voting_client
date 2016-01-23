@@ -4,14 +4,15 @@ import './Results.css';
 
 class Results extends React.Component {
 	getPair() {
-		return this.props.pair || [];
+		return this.props.pair;
 	}
 
 	render () {
 
+		console.log('rendering Results component');
 		const tally = this.props.tally;
 
-		const rows = this.getPair().map((name) => {
+		const rows = this.getPair() ? this.getPair().map((name) => {
 			const width = ((tally ? tally.get(name, 0) : 0) / 5) * 100 + '%';
 			const style = { width };
 			return (
@@ -26,7 +27,9 @@ class Results extends React.Component {
 					<td>{tally ? tally.get(name, 0) : 0}</td>
 				</tr>
 			);
-		});
+		}) : (
+			<tr><td>nothing</td></tr>
+		);
 
 		return (
 			<div className="Results">
@@ -41,7 +44,7 @@ class Results extends React.Component {
 
 						<ul className="Results__controls NavItems">
 							<li><a href="#">reset</a></li>
-							<li><a onClick={this.props.next} ref={(n) => this.nextBtn = n} href="#">next</a></li>
+							<li><a href="#" onClick={(evt) => { evt.preventDefault(); this.props.next(); }} ref={(n) => this.nextBtn = n} href="#">next</a></li>
 						</ul>
 					</div>
 				}

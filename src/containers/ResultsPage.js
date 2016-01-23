@@ -1,28 +1,20 @@
 import React, { PropTypes } from 'react'
 import Results from '../components/Results';
 import { connect } from 'react-redux';
+import { next } from '../actions/action_creators';
 
 const mapStateToProps = (state) => {
 	return {
 		pair: state.voting.getIn(['vote', 'pair']),
-		tally: state.voting.getIn(['vote', 'tally'])
+		tally: state.voting.getIn(['vote', 'tally']),
+		winner: state.voting.get('winner')
 	};
 };
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		next: () => dispatch({
-			type: 'NEXT'
-		})
+		next: () => dispatch(next())
 	};
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Results);
-
-// class ResultsPage extends React.Component {
-// 	render () {
-// 		return (
-// 			<Results pair={pair} tally={tally} />
-// 		);
-// 	}
-// }

@@ -40,6 +40,7 @@ var config = {
 	},
 
 	devServer: {
+		host: '0.0.0.0',
 		contentBase: paths.dist,
 		hot: true,
 		historyApiFallback: true

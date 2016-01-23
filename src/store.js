@@ -1,6 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { fromJS } from 'immutable';
 import actionMiddleware from './action_middleware';
+import { socket } from './api';
 import reducer from './reducer';
 
 // const appReducer = (state={}, action) => {
@@ -13,7 +14,10 @@ const appReducer = combineReducers({
 	voting: reducer
 });
 
-const createStoreWithMiddleware = applyMiddleware(actionMiddleware)(createStore);
+const createStoreWithMiddleware = applyMiddleware(
+	actionMiddleware(socket)
+)(createStore);
 const store = createStoreWithMiddleware(appReducer);
+// const store = createStore(appReducer);
 
 export default store;
